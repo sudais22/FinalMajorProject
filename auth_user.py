@@ -1,3 +1,4 @@
+
 import psycopg2 as p
 
 def authenticateUser(email, password):
