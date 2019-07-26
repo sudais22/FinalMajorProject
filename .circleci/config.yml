@@ -16,7 +16,8 @@ jobs:
           command: docker login -u sudaiss -p sudais22
       - run:
           name: Push Docker Image
-          command: docker push final/final
+          command: docker push sudaiss/final:tagname
+
 workflows:
   version: 2
   build-master:
