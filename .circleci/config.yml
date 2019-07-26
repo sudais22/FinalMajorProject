@@ -10,13 +10,13 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build Docker image
-          command: docker build -t sudaiss:final .
+          command: docker build -t sudaiss/final:final .
       - run:
           name: Login Dockerhub
           command: docker login -u sudaiss -p sudais22
       - run:
           name: Push Docker Image
-          command: docker push sudaiss/final:tagname
+          command: docker push sudaiss/final:final
 
 workflows:
   version: 2
