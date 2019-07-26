@@ -16,8 +16,7 @@ jobs:
           command: docker login -u sudaiss -p sudais22
       - run:
           name: Push Docker Image
-          command: docker tag 4d99c341a8fd sudais
-          command: docker push sudais
+          command: docker push sudais22/finals:sudais
 workflows:
   version: 2
   build-master:
