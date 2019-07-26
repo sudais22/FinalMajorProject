@@ -10,7 +10,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build Docker image
-          command: docker build -t final:final .
+          command: docker build -t sudaiss:final .
       - run:
           name: Login Dockerhub
           command: docker login -u sudaiss -p sudais22
