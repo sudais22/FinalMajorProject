@@ -1,7 +1,6 @@
-
 import psycopg2 as p
 
-def getStockData_2():
+def getStockData_2(id):
     connection = 0
     try:
         connection = p.connect(user="postgres",
@@ -17,10 +16,22 @@ def getStockData_2():
         print("Error while connecting to PostgreSQL: ", error, "\n")
     finally:
         if(connection):
-            #retrieveStocks = "SELECT row_to_json(row(day, closing_price, volume)) FROM stocktrade order by day ASC"
-            retrieveStocks = "select row_to_json(t) from ( select (select array_to_json(array_agg(row_to_json(d))) from (select day, closing_price, volume from stocktrade_3 order by day ASC) d ) as info) t "
-            cursor.execute(retrieveStocks)
-            result = cursor.fetchall()
+            result = 0
+            print(id)
+            if id == 3 or id == 4 or id == 6 or id == 7 or id == 8:
+                result = "{\"info\": \"none\"}"
+            else:
+                print(id)
+                if id == 1:
+                    retrieveStocks = "select row_to_json(t) from ( select (select array_to_json(array_agg(row_to_json(d))) from (select day, closing_price, volume from stocktrade_3 order by day ASC) d ) as info) t "
+                elif id == 2:
+                    retrieveStocks = "select row_to_json(t) from ( select (select array_to_json(array_agg(row_to_json(d))) from (select day, closing_price, volume from stocktrade_5 order by day ASC) d ) as info) t "
+                elif id == 5:
+                    retrieveStocks = "select row_to_json(t) from ( select (select array_to_json(array_agg(row_to_json(d))) from (select day, closing_price, volume from stocktrade_9 order by day ASC) d ) as info) t "
+                else:
+                    retrieveStocks = "select row_to_json(t) from ( select (select array_to_json(array_agg(row_to_json(d))) from (select day, closing_price, volume from stocktrade_3 order by day ASC) d ) as info) t "
+                cursor.execute(retrieveStocks)
+                result = cursor.fetchall()
             return result
         else:
             return 0
@@ -28,4 +39,6 @@ def getStockData_2():
         connection.close()
         print("Disconnected from postgreSQL")
 
-        
+
+
+
