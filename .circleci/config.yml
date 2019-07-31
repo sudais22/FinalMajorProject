@@ -23,7 +23,7 @@ workflows:
   my-workflow:
     jobs:
       - run-tests:
-          context: sudais-final
+          context: sudais
   build-master:
     jobs:
       - build:
