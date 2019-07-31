@@ -1,4 +1,3 @@
-
 from tornado.web import Application, RequestHandler
 from tornado.ioloop import IOLoop
 import json
@@ -23,8 +22,14 @@ class userLogin(RequestHandler):
     print("Email: " + email)
     print("Password: " + password)
     print("Response: " + str(response))
+    response_code = -1
+    if(response == -1):
+      response_code = -1
+    else:
+      response_code = 0
     responseData = {
-      "responseCode": response
+      "response_code": response_code,
+      "user_id": response
     }
     print(responseData)
     self.write(json.dumps(responseData))
@@ -32,14 +37,18 @@ class userLogin(RequestHandler):
 
 class userGetStocks(RequestHandler):
   def post(self):
-    response = getStockData()
+    data = json.loads(self.request.body.decode("utf-8"))
+    id = data["id"]
+    response = getStockData(id)
     response = json.dumps(response)
     self.write(response)
 
 
 class userGetStocks_2(RequestHandler):
   def post(self):
-    response = getStockData_2()
+    data = json.loads(self.request.body.decode("utf-8"))
+    id = data["id"]
+    response = getStockData_2(id)
     response = json.dumps(response)
     self.write(response)
 
