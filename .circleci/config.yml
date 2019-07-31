@@ -20,6 +20,10 @@ jobs:
 
 workflows:
   version: 2
+  my-workflow:
+    jobs:
+      - run-tests:
+          context: sudais-final
   build-master:
     jobs:
       - build:
